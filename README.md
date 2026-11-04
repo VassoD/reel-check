@@ -39,6 +39,19 @@ bun run analyze "https://www.instagram.com/reel/XXXXXXXX/"
 
 Environment variables are documented in [`server/.env.example`](server/.env.example).
 
+### Hosting on Fly.io
+
+The server runs on Fly.io (`server/fly.toml`, app `reel-check-vd` in Paris), so the phone doesn't depend on the Mac. It uses one always-on `shared-cpu-1x` machine with 512 MB, plus a 1 GB volume at `/data` for the SQLite history and the published APK.
+
+```bash
+cd server
+fly deploy                                        # build on Fly's servers and roll out
+grep -E '^(OPENAI_API_KEY|GLADIA_API_KEY|APP_TOKEN)=' .env | fly secrets import   # after changing a key
+fly logs                                          # live logs
+```
+
+The machine stays on (`auto_stop_machines = "off"`) because analyses keep running after the request that started them. To update yt-dlp when Instagram downloads break, bump `YTDLP_VERSION` in the `Dockerfile` and redeploy.
+
 ### API
 
 All routes under `/api/v1` need `Authorization: Bearer <APP_TOKEN>`. Responses use `{ data }` or `{ error: { code, message, requestId } }`.
