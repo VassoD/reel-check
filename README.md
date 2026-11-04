@@ -87,7 +87,7 @@ For development, use `npm run android` (dev client with fast refresh) instead of
 cd app && npm run release:android
 ```
 
-This bumps the version, builds the APK and publishes it to `server/data/app/`. On the phone, open **Settings → Check for updates → Download and install**. The first time, Android asks you to allow Reel Check to install apps. Updates keep your settings and history, because every build is signed with the same key (`android/app/debug.keystore`). Don't delete that file.
+This bumps the version, builds the APK and uploads it to the Fly server's `/data/app/` (use `PUBLISH_TO=local` for the Mac server). On the phone, open **Settings → Check for updates → Download and install**. The first time, Android asks you to allow Reel Check to install apps. Updates keep your settings and history, because every build is signed with the same key (`android/app/debug.keystore`). Don't delete that file.
 
 ## Costs
 
