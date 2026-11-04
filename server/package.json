@@ -1,0 +1,19 @@
+{
+  "name": "reel-check-server",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "1.4.4"
+  },
+  "dependencies": {
+    "hono": "4.13.16",
+    "openai": "7.50.0",
+    "zod": "4.6.7"
+  },
+  "scripts": {
+    "dev": "bun --watch src/index.ts",
+    "start": "bun src/index.ts",
+    "analyze": "bun scripts/analyze.ts",
+    "typecheck": "tsc --noEmit"
+  }
+}
